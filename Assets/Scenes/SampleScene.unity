@@ -656,9 +656,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portalPrefabs:
-  - {fileID: 4381342995516208273, guid: af1f07559771d7c43afaf850846857d0, type: 3}
-  - {fileID: 6969952052748973388, guid: 486786b30cc184142884830af45b9687, type: 3}
-  - {fileID: 6341054186629035304, guid: d2da05170530c5f43a2d148c0b0cea60, type: 3}
+  - {fileID: 1016784693150763290, guid: 0d4f2798ed760e745ae16de83f70b85b, type: 3}
+  - {fileID: 6354753839991738445, guid: 8b43dfb02a5f6ea4e858bed77e17c33b, type: 3}
+  - {fileID: 1042701896594129368, guid: 5274711665a097f4e9eda4f553f5dab3, type: 3}
   selectionPortalPlane: {fileID: 1959131233}
   selectionModelCamera: {fileID: 154249299}
   mainCamera: {fileID: 963194227}
