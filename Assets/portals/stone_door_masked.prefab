@@ -188,6 +188,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &7168617585884545140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042701896594129368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb57cbbe476f6be4a8a5375ad6b55958, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  videoclip: {fileID: 0}
 --- !u!1001 &6451293173805774064
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -198,7 +211,7 @@ PrefabInstance:
     - target: {fileID: 6341054186629035304, guid: d2da05170530c5f43a2d148c0b0cea60,
         type: 3}
       propertyPath: m_Name
-      value: stone_door Variant
+      value: stone_door_masked
       objectReference: {fileID: 0}
     - target: {fileID: 6680003193603534738, guid: d2da05170530c5f43a2d148c0b0cea60,
         type: 3}
@@ -257,6 +270,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2da05170530c5f43a2d148c0b0cea60, type: 3}
+--- !u!1 &1042701896594129368 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6341054186629035304, guid: d2da05170530c5f43a2d148c0b0cea60,
+    type: 3}
+  m_PrefabInstance: {fileID: 6451293173805774064}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &374849305786112866 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6680003193603534738, guid: d2da05170530c5f43a2d148c0b0cea60,

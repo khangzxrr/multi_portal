@@ -31,7 +31,6 @@ public class OnEnterPortal : MonoBehaviour
             Collider currentPortalCollider = portal.transform.Find("PortalQuad").gameObject.GetComponent<Collider>();
             if (currentPortalCollider == other)
             {
-                Debug.Log("YEAH1");
                 currentPortalQuad = portal.transform.Find("PortalQuad").gameObject;
                 return true;
             }
@@ -62,7 +61,6 @@ public class OnEnterPortal : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("trigged! " + other.gameObject.name);
         if (isPortalMask(other))
         {
 
