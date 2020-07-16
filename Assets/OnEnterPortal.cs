@@ -6,18 +6,22 @@ using UnityEngine.Rendering;
 
 public class OnEnterPortal : MonoBehaviour
 {
-    public GameObject currentPortalQuad;
-
+    private GameObject currentPortalQuad; //will be setted when Colliders touch each others
+    public GameObject skyboxSphere;
 
     public GameObject[] portals;
-    public Material skyboxSphereMaterial;
 
     private Boolean switched = false;
     // Start is called before the first frame update
     void Start()
     {
         switched = false;
-        skyboxSphereMaterial.SetInt("_StencilComp", (int)CompareFunction.Equal);
+        GetSkyboxMaterial().SetInt("_StencilComp", (int)CompareFunction.Equal);
+    }
+
+    private Material GetSkyboxMaterial()
+    {
+        return skyboxSphere.GetComponent<Renderer>().material;
     }
 
     public bool isPortalMask(Collider other)
@@ -38,7 +42,7 @@ public class OnEnterPortal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        skyboxSphere.transform.position = Camera.main.transform.position; //always follow player
     }
 
     private void OnTriggerEnter(Collider other)
@@ -53,8 +57,8 @@ public class OnEnterPortal : MonoBehaviour
     }
     private Boolean isActiveInnerWorld()
     {
-        return (skyboxSphereMaterial.GetInt("_StencilComp") == (int)CompareFunction.Disabled) ||
-            (skyboxSphereMaterial.GetInt("_StencilComp") == (int)CompareFunction.NotEqual);
+        return (GetSkyboxMaterial().GetInt("_StencilComp") == (int)CompareFunction.Disabled) ||
+            (GetSkyboxMaterial().GetInt("_StencilComp") == (int)CompareFunction.NotEqual);
     }
     private void OnTriggerStay(Collider other)
     {
@@ -68,12 +72,12 @@ public class OnEnterPortal : MonoBehaviour
 
                 if (!isActiveInnerWorld())
                 {
-                    skyboxSphereMaterial.SetInt("_StencilComp", (int)CompareFunction.Disabled); //set inside portal
+                    GetSkyboxMaterial().SetInt("_StencilComp", (int)CompareFunction.Disabled); //set inside portal
                 }
                 else
                 {
                     currentPortalQuad.SetActive(false);
-                    skyboxSphereMaterial.SetInt("_StencilComp", (int)CompareFunction.Equal); //outside portal
+                    GetSkyboxMaterial().SetInt("_StencilComp", (int)CompareFunction.Equal); //outside portal
                     
                 }
                 
@@ -91,7 +95,7 @@ public class OnEnterPortal : MonoBehaviour
         currentPortalQuad.SetActive(true);
         if (isActiveInnerWorld())
         {
-            skyboxSphereMaterial.SetInt("_StencilComp", (int)CompareFunction.NotEqual); //set inside portal
+            GetSkyboxMaterial().SetInt("_StencilComp", (int)CompareFunction.NotEqual); //set inside portal
         }
     
 

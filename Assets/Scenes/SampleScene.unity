@@ -1240,12 +1240,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47315ed6705695745aacc4b224529401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPortalQuad: {fileID: 0}
+  skyboxSphere: {fileID: 68826023}
   portals:
   - {fileID: 2082939423}
-  - {fileID: 0}
-  skyboxSphereMaterial: {fileID: 2100000, guid: 06cb11cf8750426448a9bd6a250b5cb9,
-    type: 2}
 --- !u!1 &1129988802
 GameObject:
   m_ObjectHideFlags: 0
