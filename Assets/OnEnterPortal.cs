@@ -6,8 +6,10 @@ using UnityEngine.Rendering;
 
 public class OnEnterPortal : MonoBehaviour
 {
-    public Collider portalMask;
-    public GameObject portalQuad;
+    public GameObject currentPortalQuad;
+
+
+    public GameObject[] portals;
     public Material skyboxSphereMaterial;
 
     private Boolean switched = false;
@@ -16,6 +18,21 @@ public class OnEnterPortal : MonoBehaviour
     {
         switched = false;
         skyboxSphereMaterial.SetInt("_StencilComp", (int)CompareFunction.Equal);
+    }
+
+    public bool isPortalMask(Collider other)
+    {
+        foreach(GameObject portal in portals)
+        {
+            Collider currentPortalCollider = portal.transform.Find("PortalQuad").gameObject.GetComponent<Collider>();
+            if (currentPortalCollider == other)
+            {
+                Debug.Log("YEAH1");
+                currentPortalQuad = portal.transform.Find("PortalQuad").gameObject;
+                return true;
+            }
+        }
+        return false;
     }
 
     // Update is called once per frame
@@ -32,7 +49,7 @@ public class OnEnterPortal : MonoBehaviour
 
     private Boolean IsDeactivatedPortalQuad()
     {
-        return !portalQuad.activeSelf;
+        return !currentPortalQuad.activeSelf;
     }
     private Boolean isActiveInnerWorld()
     {
@@ -41,8 +58,10 @@ public class OnEnterPortal : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other == portalMask)
+        Debug.Log("trigged! " + other.gameObject.name);
+        if (isPortalMask(other))
         {
+
             var distance = Vector3.Distance(this.transform.position, other.transform.position);
             if (distance < 0.25f && !switched)
             {
@@ -53,7 +72,7 @@ public class OnEnterPortal : MonoBehaviour
                 }
                 else
                 {
-                    portalQuad.SetActive(false);
+                    currentPortalQuad.SetActive(false);
                     skyboxSphereMaterial.SetInt("_StencilComp", (int)CompareFunction.Equal); //outside portal
                     
                 }
@@ -69,7 +88,7 @@ public class OnEnterPortal : MonoBehaviour
         
 
         switched = false;
-        portalQuad.SetActive(true);
+        currentPortalQuad.SetActive(true);
         if (isActiveInnerWorld())
         {
             skyboxSphereMaterial.SetInt("_StencilComp", (int)CompareFunction.NotEqual); //set inside portal

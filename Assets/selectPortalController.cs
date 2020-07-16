@@ -99,7 +99,6 @@ public class selectPortalController : MonoBehaviour
     void Update()
     {
         selectedPortal.transform.Rotate(0, 50.0f * Time.deltaTime, 0);
-        Debug.Log(Input.touchCount);
         if (((Input.touchCount > 0) || Input.GetMouseButtonDown(0))
             && (IsSelectingModel())) 
         {
