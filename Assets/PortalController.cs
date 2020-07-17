@@ -8,12 +8,26 @@ public class PortalController : MonoBehaviour
     public GameObject[] portals; //gameobject with tag "portal"
     void Start()
     {
-        portals = GameObject.FindGameObjectsWithTag("portal");
-        UpdatingPortalSphere();
+        UpdatePortalsList();
+        UpdatingPortalSphereFitWithPortalModel();
     }
 
+    public void UpdatePortalsList()
+    {
+        portals = GameObject.FindGameObjectsWithTag("portal");
+    }
+    public void SetPortalsStateExcept(GameObject portal, bool state)
+    {
+        foreach(GameObject currentPortal in portals)
+        {
+            if (currentPortal != portal)
+            {
+                currentPortal.SetActive(state);
+            }
+        }
+    }
     //moving and resize portal sphere fit with portal
-    private void UpdatingPortalSphere()
+    public void UpdatingPortalSphereFitWithPortalModel()
     {
         foreach(GameObject portal in portals)
         {

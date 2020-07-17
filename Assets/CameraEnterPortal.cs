@@ -8,7 +8,7 @@ public class CameraEnterPortal : MonoBehaviour
 {
     private GameObject currentPortalQuad; //will be setted when Colliders touch each others
     private GameObject currentPortalskyboxSphere; //will be setted when Colliders touch each others
-
+    private GameObject currentPortalModel;
 
     private Boolean switched = false;
     // Start is called before the first frame update
@@ -32,8 +32,11 @@ public class CameraEnterPortal : MonoBehaviour
             Collider currentPortalCollider = portal.transform.Find("PortalQuad").gameObject.GetComponent<Collider>();
             if (currentPortalCollider == other)
             {
+                //update current portal information
                 currentPortalQuad = portal.transform.Find("PortalQuad").gameObject;
                 currentPortalskyboxSphere = portal.transform.Find("SkyboxSphere").gameObject;
+                currentPortalModel = portal;
+
                 return true;
             }
         }
@@ -82,14 +85,25 @@ public class CameraEnterPortal : MonoBehaviour
                 {
                     GetSkyboxMaterial().SetInt("_StencilComp", (int)CompareFunction.Disabled); //set inside portal
                     SetSkyboxSphereSize(10);
+
+                    GameObject.Find("PortalController").GetComponent<PortalController>().SetPortalsStateExcept(currentPortalModel, false);
+                    //disable all other portals
                 }
                 else
                 {
                     currentPortalQuad.SetActive(false);
                     GetSkyboxMaterial().SetInt("_StencilComp", (int)CompareFunction.Equal); //outside portal
+
+                    GameObject.Find("PortalController").GetComponent<PortalController>().SetPortalsStateExcept(currentPortalModel, enabled);
+                    //disable all other portals
+
+                    GameObject.Find("PortalController").GetComponent<PortalController>().UpdatingPortalSphereFitWithPortalModel();
+                    //recalculate sphere when going outside portal
+
                     
+
                 }
-                
+
                 switched = true;
                 Debug.Log("Switched NOTEQUAL!");
             }
