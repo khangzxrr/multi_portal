@@ -41,8 +41,11 @@ public class OnEnterPortal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        skyboxSphere.transform.position = Camera.main.transform.position; //always follow player
+        //skyboxSphere.transform.position = Camera.main.transform.position; //always follow player
+       
+
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
