@@ -8,7 +8,8 @@ public class PortalController : MonoBehaviour
     public GameObject[] portals; //gameobject with tag "portal"
     void Start()
     {
-        
+        portals = GameObject.FindGameObjectsWithTag("portal");
+        UpdatingPortalSphere();
     }
 
     //moving and resize portal sphere fit with portal
@@ -29,7 +30,6 @@ public class PortalController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        portals = GameObject.FindGameObjectsWithTag("portal");
-        UpdatingPortalSphere();
+        
     }
 }

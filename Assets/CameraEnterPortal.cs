@@ -4,38 +4,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class OnEnterPortal : MonoBehaviour
+public class CameraEnterPortal : MonoBehaviour
 {
     private GameObject currentPortalQuad; //will be setted when Colliders touch each others
-    public GameObject skyboxSphere;
+    private GameObject currentPortalskyboxSphere; //will be setted when Colliders touch each others
 
-    public GameObject[] portals;
 
     private Boolean switched = false;
     // Start is called before the first frame update
     void Start()
     {
         switched = false;
-        GetSkyboxMaterial().SetInt("_StencilComp", (int)CompareFunction.Equal);
+        //GetSkyboxMaterial().SetInt("_StencilComp", (int)CompareFunction.Equal);
+        //default is Equal
     }
 
     private Material GetSkyboxMaterial()
     {
-        return skyboxSphere.GetComponent<Renderer>().material;
+        return currentPortalskyboxSphere.GetComponent<Renderer>().material;
     }
 
     public bool isPortalMask(Collider other)
     {
-        foreach(GameObject portal in portals)
+        GameObject[] portals = GameObject.Find("PortalController").GetComponent<PortalController>().portals;
+        foreach (GameObject portal in portals)
         {
             Collider currentPortalCollider = portal.transform.Find("PortalQuad").gameObject.GetComponent<Collider>();
             if (currentPortalCollider == other)
             {
                 currentPortalQuad = portal.transform.Find("PortalQuad").gameObject;
+                currentPortalskyboxSphere = portal.transform.Find("SkyboxSphere").gameObject;
                 return true;
             }
         }
         return false;
+    }
+
+    private void SetSkyboxSphereSize(float size)
+    {
+        currentPortalskyboxSphere.transform.localScale = new Vector3(size, size, size);
     }
 
     // Update is called once per frame
@@ -74,6 +81,7 @@ public class OnEnterPortal : MonoBehaviour
                 if (!isActiveInnerWorld())
                 {
                     GetSkyboxMaterial().SetInt("_StencilComp", (int)CompareFunction.Disabled); //set inside portal
+                    SetSkyboxSphereSize(10);
                 }
                 else
                 {

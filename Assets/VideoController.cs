@@ -5,11 +5,11 @@ using UnityEngine.Video;
 
 public class VideoController : MonoBehaviour
 {
-    public VideoPlayer player;
+    private VideoPlayer player;
     
     void Start()
     {
-        
+        player = GetComponent<VideoPlayer>();
     }
 
     private RenderTexture newRenderTexture(VideoClip videoClip)
