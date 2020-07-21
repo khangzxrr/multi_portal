@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class selectPortalController : MonoBehaviour
+public class SelectPortalController : MonoBehaviour
 {
+    public PortalController portalController;
 
-    public GameObject[] portalPrefabs;
+    private GameObject[] portalPrefabs;
     public GameObject selectionPortalPlane;
     public GameObject selectedPortal { get; set; }
     public Camera selectionModelCamera;
@@ -15,7 +16,9 @@ public class selectPortalController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ShowSelectionUI();
+        
+
+       // ShowSelectionUI();
     }
 
     public bool IsSelectingModel()
@@ -30,21 +33,27 @@ public class selectPortalController : MonoBehaviour
     public void EndSelectingModel()
     {
         selectionModelCamera.enabled = false;
-        mainCamera.enabled = true;
+        mainCamera.gameObject.SetActive(true);
+        gameObject.SetActive(false);
     }
     public void ShowSelectionUI()
     {
+        portalPrefabs = portalController.portals; //get portal from controller
         selectionModelCamera.enabled = true;
-        Camera.main.enabled = false;
+        gameObject.SetActive(true);
+        mainCamera.gameObject.SetActive(false);
 
         for (int i = 0; i < portalPrefabs.Length; i++)
         {
             Vector3 displayModelPosition = new Vector3(selectionPortalPlane.transform.position.x,
                                                        selectionPortalPlane.transform.position.y + 0.08f,
                                                        selectionPortalPlane.transform.position.z);
-            portalPrefabs[i] = (GameObject)Instantiate(portalPrefabs[i], displayModelPosition, Quaternion.identity);
+            portalPrefabs[i].transform.position = displayModelPosition;
+           // portalPrefabs[i] = (GameObject)Instantiate(portalPrefabs[i], displayModelPosition, Quaternion.identity);
             portalPrefabs[i].transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         }
+
+
 
         HideAllModels();
         selectedPortal = portalPrefabs[currentSelectedPortalIndex];
