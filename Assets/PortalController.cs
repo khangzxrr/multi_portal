@@ -6,6 +6,7 @@ public class PortalController : MonoBehaviour
 {
 
     public GameObject[] portals; //gameobject with tag "portal"
+    public List<GameObject> currentWorkingPortals = new List<GameObject>();
     void Start()
     {
         UpdatePortalsList();

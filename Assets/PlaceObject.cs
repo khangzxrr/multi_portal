@@ -8,6 +8,9 @@ using UnityEngine.XR.ARSubsystems;
 public class PlaceObject : MonoBehaviour
 {
     private SelectPortalController selectedPortalController;
+
+    public PortalController portalController;
+
     public GameObject SelectionPortalCanvas;
     private ARRaycastManager arRaycastManager;
 
@@ -54,7 +57,12 @@ public class PlaceObject : MonoBehaviour
                     Pose hitPose = s_Hits[0].pose;
 
                     GameObject newPortal = Instantiate(selectedPortalController.selectedPortal); //clone new portal
+                    portalController.currentWorkingPortals.Add(newPortal); //add cloned portal to working portal
+
                     newPortal.transform.position = hitPose.position;
+
+                    newPortal.transform.localScale = new Vector3(1f, 1.03f, 0.7f); //rescale back to normal!
+
                     RotateFaceToCamera(newPortal);
 
                     

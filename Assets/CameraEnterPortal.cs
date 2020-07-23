@@ -26,7 +26,7 @@ public class CameraEnterPortal : MonoBehaviour
 
     public bool isPortalMask(Collider other)
     {
-        GameObject[] portals = GameObject.Find("PortalController").GetComponent<PortalController>().portals;
+        List<GameObject> portals = GameObject.Find("PortalController").GetComponent<PortalController>().currentWorkingPortals;
         foreach (GameObject portal in portals)
         {
             Collider currentPortalCollider = portal.transform.Find("PortalQuad").gameObject.GetComponent<Collider>();
