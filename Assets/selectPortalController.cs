@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class SelectPortalController : MonoBehaviour
 {
@@ -12,8 +13,13 @@ public class SelectPortalController : MonoBehaviour
     public Camera selectionModelCamera;
     public Camera mainCamera;
 
-    private int currentSelectedPortalIndex = 0; 
+    private int currentSelectedPortalIndex = 0;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        
+    }
     void Start()
     {
         
@@ -30,8 +36,26 @@ public class SelectPortalController : MonoBehaviour
         return false;
     }
 
+    private void SelectVideo()
+    {
+        NativeGallery.Permission permission = NativeGallery.GetVideoFromGallery((path) =>
+        {
+            Debug.Log("Video path: " + path);
+            if (path != null)
+            {
+                // Play the selected video
+                //Handheld.PlayFullScreenMovie("file://" + path);
+
+                selectedPortal.transform.Find("SkyboxSphere").GetComponent<VideoPlayer>().url = "file://" + path;
+            }
+        }, "Select a video");
+
+        Debug.Log("Permission result: " + permission);
+    }
+
     public void EndSelectingModel()
     {
+        SelectVideo();
         selectionModelCamera.enabled = false;
         mainCamera.gameObject.SetActive(true);
         gameObject.SetActive(false);
