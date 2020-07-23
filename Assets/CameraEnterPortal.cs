@@ -62,6 +62,11 @@ public class CameraEnterPortal : MonoBehaviour
         
     }
 
+    private void SwitchRenderCurrentPortalQuad(bool visible)
+    {
+        currentPortalQuad.GetComponent<MeshRenderer>().enabled = visible;
+    }
+
 
     private Boolean IsDeactivatedPortalQuad()
     {
@@ -91,7 +96,7 @@ public class CameraEnterPortal : MonoBehaviour
                 }
                 else
                 {
-                    currentPortalQuad.SetActive(false);
+                    SwitchRenderCurrentPortalQuad(false);
                     GetSkyboxMaterial().SetInt("_StencilComp", (int)CompareFunction.Equal); //outside portal
 
                     GameObject.Find("PortalController").GetComponent<PortalController>().SetPortalsStateExcept(currentPortalModel, enabled);
@@ -115,7 +120,8 @@ public class CameraEnterPortal : MonoBehaviour
         
 
         switched = false;
-        currentPortalQuad.SetActive(true);
+        SwitchRenderCurrentPortalQuad(true);
+
         if (isActiveInnerWorld())
         {
             GetSkyboxMaterial().SetInt("_StencilComp", (int)CompareFunction.NotEqual); //set inside portal
