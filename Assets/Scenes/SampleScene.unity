@@ -261,6 +261,92 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &313679217
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7760125008423207483, guid: 0d4f2798ed760e745ae16de83f70b85b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.7772741
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760125008423207483, guid: 0d4f2798ed760e745ae16de83f70b85b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.021335125
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760125008423207483, guid: 0d4f2798ed760e745ae16de83f70b85b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760125008423207483, guid: 0d4f2798ed760e745ae16de83f70b85b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760125008423207483, guid: 0d4f2798ed760e745ae16de83f70b85b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760125008423207483, guid: 0d4f2798ed760e745ae16de83f70b85b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760125008423207483, guid: 0d4f2798ed760e745ae16de83f70b85b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760125008423207483, guid: 0d4f2798ed760e745ae16de83f70b85b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760125008423207483, guid: 0d4f2798ed760e745ae16de83f70b85b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760125008423207483, guid: 0d4f2798ed760e745ae16de83f70b85b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760125008423207483, guid: 0d4f2798ed760e745ae16de83f70b85b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760125008493261815, guid: 0d4f2798ed760e745ae16de83f70b85b,
+        type: 3}
+      propertyPath: m_Name
+      value: portal_masked
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760125009350889924, guid: 0d4f2798ed760e745ae16de83f70b85b,
+        type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: 1253d29d1df6b415fab3142f179ac877,
+        type: 3}
+    - target: {fileID: 7760125009350889924, guid: 0d4f2798ed760e745ae16de83f70b85b,
+        type: 3}
+      propertyPath: m_Looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760125009350889924, guid: 0d4f2798ed760e745ae16de83f70b85b,
+        type: 3}
+      propertyPath: m_DirectAudioMutes.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7760125008493261814, guid: 0d4f2798ed760e745ae16de83f70b85b, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 0d4f2798ed760e745ae16de83f70b85b, type: 3}
 --- !u!1 &451512566
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,18 +899,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 747232595}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &747232598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 747232596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95ade6393bedd490999ab4c710a8ef13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &882760571
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,6 +929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portals:
+  - {fileID: 747232596}
   - {fileID: 747232596}
   currentWorkingPortals: []
 --- !u!4 &882760573
@@ -1364,7 +1439,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7cedf62bb872d87479dd795bd1b37c61, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b505f3a9192fa4860b405feb1e42db9c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1654,7 +1729,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7cedf62bb872d87479dd795bd1b37c61, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b505f3a9192fa4860b405feb1e42db9c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Video;
 
 public class SelectPortalController : MonoBehaviour
@@ -127,13 +128,23 @@ public class SelectPortalController : MonoBehaviour
 
     }
 
+    private bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
+    }
+
 
     // Update is called once per frame
     void Update()
     {
         selectedPortal.transform.Rotate(0, 50.0f * Time.deltaTime, 0);
         if (((Input.touchCount > 0) || Input.GetMouseButtonDown(0))
-            && (IsSelectingModel())) 
+            && IsSelectingModel()
+            && !IsPointerOverUIObject()) 
         {
             EndSelectingModel();
         }
