@@ -43,35 +43,36 @@ public class PlaceObject : MonoBehaviour
         obj.transform.localRotation = Quaternion.Euler(rotateFaceToCamera);
     }
 
+    public void PlacingModel(GameObject selectedPortal)
+    {
+        int x = Screen.width / 2;
+        int y = Screen.height / 2;
+
+        Vector2 screenCenter = new Vector2(x, y);
+
+        List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
+        if (arRaycastManager.Raycast(screenCenter, s_Hits, TrackableType.PlaneWithinPolygon))
+        {
+            Pose hitPose = s_Hits[0].pose;
+
+            GameObject newPortal = Instantiate(selectedPortalController.selectedPortal); //clone new portal
+            portalController.currentWorkingPortals.Add(newPortal); //add cloned portal to working portal
+
+            newPortal.transform.position = hitPose.position;
+
+            newPortal.transform.localScale = new Vector3(1f, 1.03f, 0.7f); //rescale back to normal!
+
+            RotateFaceToCamera(newPortal);
+            newPortal.transform.Find("InformationUI").GetComponent<Floating>().enabled = true; //enable floating effect
+
+
+
+
+
+        }
+    }
+
     void Update()
     {
-        if (Input.touchCount > 0 && !SelectionPortalCanvas.activeSelf && !IsPointerOverUIObject())
-        {
-            Touch touch = Input.GetTouch(0);
-
-            if (touch.phase == TouchPhase.Began)
-            {
-                List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
-                if (arRaycastManager.Raycast(touch.position, s_Hits, TrackableType.PlaneWithinPolygon))
-                {
-                    Pose hitPose = s_Hits[0].pose;
-
-                    GameObject newPortal = Instantiate(selectedPortalController.selectedPortal); //clone new portal
-                    portalController.currentWorkingPortals.Add(newPortal); //add cloned portal to working portal
-
-                    newPortal.transform.position = hitPose.position;
-
-                    newPortal.transform.localScale = new Vector3(1f, 1.03f, 0.7f); //rescale back to normal!
-
-                    RotateFaceToCamera(newPortal);
-
-                    
-
-
-
-
-                }
-            }
-        }
     }
 }

@@ -2,8 +2,10 @@
 {
     Properties
     {
-        _MainTex("Texture", 2D) = "white" {}
+            _MainTex("Texture", 2D) = "white" {}
             [Enum(CompareFunction)] _StencilComp("Stencil Comp",Int) = 3
+            _StencilPortal("Stencil Portal Index",Int) = 1
+            
     }
         SubShader
             {
@@ -13,9 +15,9 @@
 
                 Pass
                 {
-                                Stencil{
-                    Ref 1
-                    Comp[_StencilComp]
+                    Stencil{
+                        Ref [_StencilPortal]
+                        Comp[_StencilComp]
                 }
                     CGPROGRAM
                     #pragma vertex vert

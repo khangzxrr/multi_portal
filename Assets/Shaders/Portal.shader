@@ -3,6 +3,11 @@
 
 Shader "Custom/PortalDoor"
 {
+    Properties
+    {
+            _StencilPortal("Stencil Portal Index",Int) = 3
+            
+    }
     SubShader
     {
         Tags { "RenderType" = "Opaque" }
@@ -14,7 +19,7 @@ Shader "Custom/PortalDoor"
         Pass
         {
             Stencil{
-                Ref 1
+                Ref [_StencilPortal]
                 Comp always
                 Pass replace
             }
